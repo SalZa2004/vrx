@@ -191,4 +191,16 @@ install(DIRECTORY
   worlds
   DESTINATION share/${PROJECT_NAME})
 
+# Install Python node
+install(
+  PROGRAMS
+  scripts/waypoint_tracker.py  # Replace with the correct path to your Python script
+  DESTINATION lib/${PROJECT_NAME}
+)
+# Install launch files (if any)
+install(
+  DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 ament_package()
