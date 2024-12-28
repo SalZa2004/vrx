@@ -14,6 +14,8 @@ class ThrustPublisher(Node):
         
         # Set a timer to call the publish method once
         self.timer = self.create_timer(1.0, self.publish_thrust)
+        linear_speed= 100
+        angular_speed = 1.0
 
     def publish_thrust(self):
         # Create the message
@@ -21,15 +23,15 @@ class ThrustPublisher(Node):
         left_thrust_msg = Float64()
         
         # Set the thrust value
-        right_thrust_msg.data = 100.0
-        left_thrust_msg.data = 100.0
+        right_thrust_msg.data = self.linear_speed
+        left_thrust_msg.data = self.linear_speed
         
         # Publish to both thrusters
         self.right_thruster_pub.publish(right_thrust_msg)
         self.left_thruster_pub.publish(left_thrust_msg)
         
         # Log the published values
-        self.get_logger().info(f"Publishing 100.0 to /wamv/thrusters/right/thrust and /wamv/thrusters/left/thrust")
+        self.get_logger().info(f"Publishing ", self.linear_speed ,"to /wamv/thrusters/right/thrust and /wamv/thrusters/left/thrust")
 
 def main(args=None):
     rclpy.init(args=args)
